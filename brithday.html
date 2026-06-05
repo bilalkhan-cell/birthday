@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600&display=swap');
+
+        :root {
+            --pink: #ff66b2;
+            --bg: #1a1a2e;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden; /* Prevents scrollbars during animations */
+        }
+
+        /* Container for the steps */
+        .step {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease-in-out;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .step.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Cute Pink Font for Name */
+        .name {
+            color: var(--pink);
+            font-family: 'Fredoka One', cursive;
+            text-shadow: 2px 2px 8px rgba(255, 102, 178, 0.5);
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 20px; }
+        
+        /* General Button Style */
+        button {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-family: 'Fredoka One', cursive;
+            color: white;
+            background: linear-gradient(45deg, #ff66b2, #ff3385);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 102, 178, 0.4);
+            transition: transform 0.2s;
+            margin-top: 30px;
+        }
+        button:hover { transform: scale(1.1); }
+
+        /* Step 0: Password */
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            border: 2px solid var(--pink);
+            background: transparent;
+            color: white;
+            text-align: center;
+            outline: none;
+        }
+
+        /* Step 1: Welcome Animation */
+        .welcome-anim {
+            animation: bounceIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Step 2: Rocket Animation */
+        .rocket {
+            font-size: 5rem;
+            position: absolute;
+            bottom: -100px;
+            animation: rocketFly 3s ease-in forwards;
+        }
+        @keyframes rocketFly {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-50vh) scale(1.5) rotate(15deg); }
+            100% { transform: translateY(-120vh) scale(0.5) rotate(45deg); opacity: 0; }
+        }
+
+        /* Step 3: Age Transformation */
+        .age-container { font-size: 6rem; font-family: 'Fredoka One', cursive; font-weight: bold; }
+        .age-14 { display: inline-block; animation: fadeOutDown 1s 1s forwards; }
+        .age-15 { display: inline-block; opacity: 0; position: absolute; transform: translate(-50%, -50%); top: 50%; left: 50%; animation: fadeInUp 1s 2s forwards; color: var(--pink); }
+        
+        @keyframes fadeOutDown { to { opacity: 0; transform: translateY(50px) scale(0.5); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, 50px) scale(0.5); } to { opacity: 1; transform: translate(-50%, -50%) scale(1.5); text-shadow: 0 0 20px var(--pink); } }
+
+        /* Step 4: PC Gaming */
+        .gaming-box { background: rgba(0,0,0,0.5); padding: 30px; border-radius: 15px; border: 2px solid var(--pink); }
+        select, .gaming-box input { margin: 10px 0; width: 80%; }
+
+        /* Step 5: Epic Photo Arrival (Free Fire Style) */
+        .epic-photo {
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px var(--pink);
+            opacity: 0;
+        }
+        .trigger-epic {
+            animation: epicArrival 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes epicArrival {
+            0% { transform: scale(3) translateY(-100px) rotate(-15deg); opacity: 0; filter: blur(10px); }
+            70% { transform: scale(0.9) translateY(10px) rotate(5deg); opacity: 1; filter: blur(0px); }
+            100% { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
+        }
+
+        /* Step 6: Background & Typewriter */
+        #step6 { background-size: cover; background-position: center; }
+        #step6::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); z-index: -1; /* Dark overlay for text readability */
+        }
+        .typewriter { font-size: 1.5rem; min-height: 100px; margin-top: 20px; font-style: italic; }
+
+        /* Step 7: The End */
+        .the-end { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); text-shadow: 0 0 30px var(--pink); } 100% { transform: scale(1); } }
+
+    </style>
+</head>
+<body>
+
+    <audio id="bdayAudio" src="bday-audio.mp3"></audio>
+
+    <div id="step0" class="step active">
+        <h2>Enter the Secret Password</h2>
+        <input type="text" id="passInput" placeholder="Password...">
+        <button onclick="checkPassword()">Enter</button>
+    </div>
+
+    <div id="step1" class="step">
+        <h1 class="welcome-anim">Welcome <span class="name">NAME</span>!</h1>
+        <button onclick="nextStep(1)">Next</button>
+    </div>
+
+    <div id="step2" class="step">
+        <h1>Blasting off to your special day...</h1>
+        <div class="rocket" id="rocketIcon">🚀</div>
+        <button onclick="nextStep(2)" style="margin-top: 150px;">Next</button>
+    </div>
+
+    <div id="step3" class="step">
+        <h1>Leveling Up!</h1>
+        <div class="age-container">
+            <span class="age-14">14</span>
+            <span class="age-15">15</span>
+        </div>
+        <button onclick="nextStep(3)" style="margin-top: 150px;">Next</button>
+    </div>
+
+    <div id="step4" class="step">
+        <div class="gaming-box">
+            <h2>PC GAMER ZONE</h2>
+            <p>Which multiplayer game do you play?</p>
+            <select id="gameChoice">
+                <option value="Minecraft">Minecraft</option>
+                <option value="Freefire">Free Fire</option>
+                <option value="Other">Other</option>
+            </select><br>
+            <input type="text" id="gameNameInput" placeholder="Enter Game Name (if other)"><br>
+            <input type="text" id="userIdInput" placeholder="Enter User ID"><br>
+            <button onclick="submitGame()">Submit & Next</button>
+        </div>
+    </div>
+
+    <div id="step5" class="step">
+        <h2 style="color: var(--pink); font-family: 'Fredoka One';">Look who is here!</h2>
+        <img src="img.png" alt="NAME" class="epic-photo" id="arrivalPhoto">
+        <button onclick="nextStep(5)">Next</button>
+    </div>
+
+    <div id="step6" class="step">
+        <h1>Happy Birthday, <span class="name">NAME</span>!</h1>
+        <div class="typewriter" id="typewriterText"></div>
+        <button onclick="nextStep(6)">Next</button>
+    </div>
+
+    <div id="step7" class="step">
+        <h1 class="name the-end" style="font-size: 4rem;">Happy Birthday!</h1>
+        <h2>THE END</h2>
+    </div>
+
+    <script>
+        // Password Check logic (Viewable in Inspect Element, as requested)
+        function checkPassword() {
+            const pass = document.getElementById("passInput").value;
+            if(pass === "bilalxNAME143") {
+                document.getElementById("step0").classList.remove("active");
+                document.getElementById("step1").classList.add("active");
+            } else {
+                alert("Incorrect Password! Try again.");
+            }
+        }
+
+        // Logic to move to the next screen
+        function nextStep(currentStep) {
+            document.getElementById("step" + currentStep).classList.remove("active");
+            let next = currentStep + 1;
+            document.getElementById("step" + next).classList.add("active");
+
+            // Trigger specific animations based on the step we just entered
+            if(next === 2) {
+                // Restart rocket animation just in case
+                let rocket = document.getElementById("rocketIcon");
+                rocket.style.animation = 'none';
+                rocket.offsetHeight; /* trigger reflow */
+                rocket.style.animation = null; 
+            }
+            if(next === 5) {
+                // Play Audio
+                document.getElementById("bdayAudio").play().catch(e => console.log("Audio play prevented by browser, user needs to click."));
+                // Trigger Epic Photo Arrival
+                document.getElementById("arrivalPhoto").classList.add("trigger-epic");
+            }
+            if(next === 6) {
+                // Set background image dynamically
+                document.getElementById("step6").style.backgroundImage = "url('img1.png')";
+                // Start Typewriter
+                startTypewriter();
+            }
+        }
+
+        // Submit Game function acts as the "Next" for Step 4
+        function submitGame() {
+            const game = document.getElementById("gameChoice").value;
+            const gameName = document.getElementById("gameNameInput").value;
+            const userId = document.getElementById("userIdInput").value;
+            
+            // You can log this data or send it somewhere, for now we just proceed.
+            console.log("Game:", game, "Name:", gameName, "ID:", userId);
+            nextStep(4);
+        }
+
+        // Typewriter Effect Logic
+        const wishMessage = "Wishing you a universe of happiness! May your 15th year be filled with epic wins, beautiful moments, and all the pink vibes you deserve. Keep shining bright!";
+        let i = 0;
+        function startTypewriter() {
+            if (i < wishMessage.length) {
+                document.getElementById("typewriterText").innerHTML += wishMessage.charAt(i);
+                i++;
+                setTimeout(startTypewriter, 50); // Speed of typing (50ms per letter)
+            }
+        }
+    </script>
+</body>
+</html>
