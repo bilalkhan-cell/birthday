@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bdayAudio" src="bday-audio.mp3"></audio>
+
+    <div id="step0" class="step active">
+        <h2>Enter the Secret Password</h2>
+        <input type="text" id="passInput" placeholder="Password...">
+        <button onclick="checkPassword()" style="margin-top: 20px;">Enter</button>
+    </div>
+
+    <div id="step1" class="step">
+        <h1 class="welcome-anim">Welcome <span class="name">NAME</span>!</h1>
+        <button onclick="nextStep(1)" style="margin-top: 50px;">Next</button>
+    </div>
+
+    <div id="step2" class="step">
+        <h1>Blasting off to your special day...</h1>
+        <div class="rocket" id="rocketIcon">🚀</div>
+        <button onclick="nextStep(2)" style="margin-top: 150px;">Next</button>
+    </div>
+
+    <div id="step3" class="step">
+        <h1>Leveling Up!</h1>
+        <div class="age-container">
+            <div class="age-14">14</div>
+            <div class="age-15">15</div>
+        </div>
+        <button onclick="nextStep(3)" style="margin-top: 100px;">Next</button>
+    </div>
+
+    <div id="step4" class="step">
+        <h2 id="radarText">Scanning the area for the most beautiful girl...</h2>
+        <div class="radar-box" id="radarBox">
+            <div class="radar-scanner" id="radarScanner"></div>
+            <div class="radar-dot" id="radarDot"></div>
+        </div>
+        <h1 class="target-alert" id="targetAlert">TARGET FOUND: IT'S YOU!</h1>
+        <button id="radarNextBtn" onclick="nextStep(4)" style="display: none; margin-top: 30px;">Next</button>
+    </div>
+
+    <div id="step5" class="step">
+        <button class="danger-btn" id="dangerBtn" onclick="triggerSecretMessage()">DO NOT PRESS</button>
+        <div class="secret-message" id="secretMessage">I just wanted an excuse to say you mean the world to me. ❤️</div>
+        <button id="secretNextBtn" onclick="nextStep(5)" style="display: none; margin-top: 50px;">Next</button>
+    </div>
+
+    <div id="step6" class="step">
+        <h1 style="color: var(--pink); font-family: 'Fredoka One';">Tell Me Why I'm Awesome</h1>
+        <h2 id="complimentText" style="min-height: 80px; font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin: 20px;">Click the button to find out!</h2>
+        <button class="danger-btn compliment-btn" onclick="generateCompliment()">Give Me A Compliment 💖</button>
+        <button id="complimentNextBtn" onclick="nextStep(6)" style="display: none; margin-top: 50px;">Next</button>
+    </div>
+
+    <div id="step7" class="step">
+        <h2 style="color: var(--pink); font-family: 'Fredoka One';">Look at these epic memories!</h2>
+        <div class="slideshow-container">
+            <img src="photo1.png" class="slide active-slide">
+            <img src="photo2.png" class="slide">
+            <img src="photo3.png" class="slide">
+        </div>
+        <button onclick="nextStep(7)" style="margin-top: 50px;">Next</button>
+    </div>
+
+    <div id="step8" class="step">
+        <h1>Happy Birthday, <span class="name">NAME</span>!</h1>
+        <div class="typewriter" id="typewriterText"></div>
+        <button onclick="nextStep(8)" style="margin-top: 40px;">Next</button>
+    </div>
+
+    <div id="step9" class="step">
+        <h1 class="name the-end" style="font-size: 4rem;">Happy Birthday!</h1>
+        <h2>THE END</h2>
+        <div class="signature">truly by bilal</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

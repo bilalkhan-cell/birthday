@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600&family=Dancing+Script:wght@700&display=swap');
+
+:root {
+    --pink: #ff66b2;
+    --bg: #1a1a2e;
+}
+
+body, html {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background-color: var(--bg); color: white;
+    font-family: 'Nunito', sans-serif; overflow: hidden;
+}
+
+.step {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.8s ease-in-out;
+    text-align: center; padding: 20px; box-sizing: border-box;
+}
+
+.step.active { opacity: 1; pointer-events: all; }
+
+.name {
+    color: var(--pink); font-family: 'Fredoka One', cursive;
+    text-shadow: 2px 2px 8px rgba(255, 102, 178, 0.5);
+}
+
+h1 { font-size: 3rem; margin-bottom: 20px; }
+
+button {
+    padding: 12px 30px; font-size: 1.2rem; font-family: 'Fredoka One', cursive;
+    color: white; background: linear-gradient(45deg, #ff66b2, #ff3385);
+    border: none; border-radius: 25px; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 102, 178, 0.4); transition: transform 0.2s; margin-top: 10px;
+}
+button:hover { transform: scale(1.1); }
+
+/* Step 0: Password */
+input[type="text"] {
+    padding: 10px; font-size: 1.2rem; border-radius: 10px;
+    border: 2px solid var(--pink); background: transparent; color: white; text-align: center; outline: none;
+}
+
+/* Animations */
+.welcome-anim { animation: bounceIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+@keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+
+.rocket { font-size: 5rem; position: absolute; bottom: -100px; animation: rocketFly 3s ease-in forwards; }
+@keyframes rocketFly { 0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; } 50% { transform: translateY(-50vh) scale(1.5) rotate(15deg); } 100% { transform: translateY(-120vh) scale(0.5) rotate(45deg); opacity: 0; } }
+
+/* Step 3: EPIC Age Transform */
+.age-container { 
+    position: relative; height: 150px; width: 100%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 8rem; font-family: 'Fredoka One', cursive; font-weight: bold; 
+}
+.age-14 { position: absolute; animation: glitchOut 1.2s forwards; }
+.age-15 { position: absolute; opacity: 0; color: var(--pink); animation: epicLevelUp 1.5s 1.2s forwards; }
+
+@keyframes glitchOut { 
+    0% { transform: scale(1); opacity: 1; }
+    20% { transform: scale(1.1) skewX(15deg); filter: hue-rotate(90deg); }
+    40% { transform: scale(0.9) skewX(-15deg); filter: hue-rotate(-90deg); }
+    100% { transform: scale(0) translateY(-100px); opacity: 0; }
+}
+@keyframes epicLevelUp { 
+    0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+    60% { transform: scale(1.4) rotate(10deg); opacity: 1; text-shadow: 0 0 50px var(--pink); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; text-shadow: 0 0 25px var(--pink), 0 0 40px white; }
+}
+
+/* Step 4: Radar Animation */
+.radar-box { position: relative; width: 200px; height: 200px; border-radius: 50%; border: 3px solid var(--pink); background: rgba(255, 102, 178, 0.1); box-shadow: 0 0 30px rgba(255, 102, 178, 0.4); margin: 30px auto; overflow: hidden;}
+.radar-scanner { position: absolute; width: 50%; height: 50%; background: linear-gradient(45deg, rgba(255, 102, 178, 0.9), transparent); top: 0; left: 50%; transform-origin: bottom left; animation: spin 2s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.target-alert { font-size: 2.5rem; color: var(--pink); font-family: 'Fredoka One', cursive; text-shadow: 0 0 20px var(--pink); display: none; animation: popIn 0.5s ease-out forwards; }
+.radar-dot { position: absolute; width: 15px; height: 15px; background: white; border-radius: 50%; top: 40%; left: 60%; box-shadow: 0 0 10px white; display: none; animation: pulse 1s infinite; }
+
+/* Step 5: Do Not Press */
+.danger-btn { background: linear-gradient(45deg, #ff3333, #cc0000); box-shadow: 0 0 25px #ff3333; font-size: 2.5rem; padding: 20px 50px; border-radius: 15px; border: 2px solid white; cursor: pointer; transition: 0.2s; color: white; font-family: 'Fredoka One', cursive; margin-top: 50px;}
+.danger-btn:hover { transform: scale(1.1); box-shadow: 0 0 40px #ff3333; }
+.secret-message { font-size: 2rem; color: var(--pink); font-family: 'Fredoka One', cursive; text-shadow: 0 0 20px var(--pink); display: none; animation: popIn 1s ease-out forwards; margin-top: 40px;}
+.floating-heart { position: absolute; color: var(--pink); font-size: 2rem; animation: floatUp 4s ease-in forwards; pointer-events: none; text-shadow: 0 0 10px var(--pink);}
+@keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-120vh) scale(1.5) rotate(45deg); opacity: 0; } }
+
+/* Step 6: Compliment Generator */
+.compliment-btn { background: linear-gradient(45deg, #ff66b2, #ff99cc); box-shadow: 0 0 20px #ff66b2; font-size: 1.5rem; padding: 15px 30px; }
+.compliment-btn:hover { box-shadow: 0 0 35px #ff66b2; }
+
+/* Step 7: Slideshow */
+.slideshow-container { position: relative; width: 300px; height: 300px; margin-top: 20px; margin-left: auto; margin-right: auto;}
+.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 15px; box-shadow: 0 0 30px var(--pink); opacity: 0; transition: opacity 1s ease-in-out; }
+.slide.active-slide { opacity: 1; animation: popIn 0.5s ease-out; }
+@keyframes popIn { 0% { transform: scale(0.8); } 100% { transform: scale(1); } }
+
+/* Step 8 & 9 */
+#step8 { background-size: cover; background-position: center; }
+#step8::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: -1; }
+.typewriter { font-size: 1.5rem; min-height: 100px; margin-top: 20px; font-style: italic; padding: 0 20px;}
+.the-end { animation: pulse 2s infinite; }
+.signature { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--pink); margin-top: 30px; text-shadow: 0 0 10px var(--pink); opacity: 0; animation: fadeIn 2s 1s forwards; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); text-shadow: 0 0 30px var(--pink); } 100% { transform: scale(1); } }
+@keyframes fadeIn { to { opacity: 1; } }
