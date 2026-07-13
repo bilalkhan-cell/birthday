@@ -59,6 +59,10 @@ function checkPassword() {
     if(pass === "naza") {
         document.getElementById("step0").classList.remove("active");
         document.getElementById("step1").classList.add("active");
+           // Start the music
+        const audio = document.getElementById("bdayAudio");
+        audio.loop = true;
+        audio.play().catch(err => console.log(err));
     } else {
         alert("Incorrect Password! Try again.");
     }
