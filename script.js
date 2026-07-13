@@ -136,7 +136,7 @@ function startSlideshow() {
     }, 2500); 
 }
 
-const wishMessage = "Wishing you a universe of happiness! May your 15th year be filled with beautiful moments, big laughs, and all the pink vibes you deserve. Remember that time you called me <b> Bilal Bhaiya <b> ? Let's make more memories like that. Keep shining bright!";
+const wishMessage = "Wishing you a universe of happiness! May your 15th year be filled with beautiful moments, big laughs, and all the pink vibes you deserve. Remember that time you called me <b> Bilal Bhaiya </b> ? Let's make more memories like that. Keep shining bright!";
 let i = 0;
 function startTypewriter() {
     if (i < wishMessage.length) {
