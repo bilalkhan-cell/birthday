@@ -56,7 +56,7 @@ function generateCompliment() {
 
 function checkPassword() {
     const pass = document.getElementById("passInput").value;
-    if(pass === "bilalxNAME143") {
+    if(pass === "naza") {
         document.getElementById("step0").classList.remove("active");
         document.getElementById("step1").classList.add("active");
     } else {
